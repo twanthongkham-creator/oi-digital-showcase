@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>TPM-OI NEXT | Digital Showcase</title>
 
-<!-- Prompt Font -->
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -23,20 +22,41 @@ body {
 /* ================= HEADER ================= */
 header {
   text-align: center;
-  padding: 24px 16px 12px;
+  padding: 20px 16px 6px; /* 🔽 ลดระยะ */
 }
 
-header h1 {
-  margin: 0;
-  font-size: 32px;
+.next-logo {
+  font-size: 42px;
   font-weight: 700;
-  letter-spacing: 1px;
+  letter-spacing: 8px;
+  margin: 0;
+}
+
+.next-logo .n {
+  background: linear-gradient(135deg,#22c55e,#4ade80);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.next-logo .e {
+  background: linear-gradient(135deg,#38bdf8,#2563eb);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.next-logo .x {
+  background: linear-gradient(135deg,#f59e0b,#fb923c);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.next-logo .t {
+  background: linear-gradient(135deg,#a855f7,#7c3aed);
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
 header p {
-  margin-top: 6px;
+  margin: 6px 0 0;
   color: #64748b;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 /* ================= MENU ================= */
@@ -45,51 +65,48 @@ header p {
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
-  padding: 16px;
+  padding: 10px 12px; /* 🔽 ลด */
 }
 
 .menu button {
-  padding: 10px 18px;
+  padding: 10px 22px;
   border-radius: 999px;
   border: 2px solid;
-  background: white;
-  font-size: 15px;
+  background: #ffffff;
+  font-size: 14px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.menu button.active {
-  color: white;
+/* ทุกปุ่มใช้สีน้ำเงินเดียว */
+.btn-makigami,
+.btn-fi,
+.btn-kaizen,
+.btn-opl,
+.btn-am {
+  border-color:#1E3A8A;
+  color:#1E3A8A;
 }
-
-/* Color per NEXT */
-.n { border-color:#22c55e; color:#22c55e; }
-.n.active { background:#22c55e; }
-
-.e { border-color:#2563eb; color:#2563eb; }
-.e.active { background:#2563eb; }
-
-.x { border-color:#f59e0b; color:#f59e0b; }
-.x.active { background:#f59e0b; }
-
-.t { border-color:#7c3aed; color:#7c3aed; }
-.t.active { background:#7c3aed; }
+.menu button.active {
+  background:#1E3A8A;
+  color:white;
+}
 
 /* ================= CONTENT ================= */
 .content {
-  padding: 12px 16px 90px;
+  padding: 6px 14px 88px; /* 🔽 ยกภาพขึ้น */
   display: flex;
   justify-content: center;
 }
 
 .card {
   width: 100%;
-  max-width: 520px;
+  max-width: 540px;
   background: #ffffff;
   border-radius: 20px;
-  padding: 18px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  padding: 14px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.1);
   text-align: center;
 }
 
@@ -106,18 +123,18 @@ header p {
   right: 0;
   background: #ffffff;
   border-top: 1px solid #e5e7eb;
-  padding: 12px 16px;
+  padding: 10px 14px;
   display: flex;
   justify-content: space-between;
 }
 
 .nav button {
-  padding: 12px 22px;
+  padding: 10px 26px;
   border-radius: 14px;
   border: none;
   background: #0f172a;
   color: white;
-  font-size: 15px;
+  font-size: 14px;
   cursor: pointer;
 }
 </style>
@@ -126,27 +143,29 @@ header p {
 <body>
 
 <header>
-  <h1>TPM-OI NEXT</h1>
-  <p>Office Improvement Digital Showcase</p>
+  <h1 class="next-logo">
+    <span class="n">N</span>
+    <span class="e">E</span>
+    <span class="x">X</span>
+    <span class="t">T</span>
+  </h1>
+  <p>TPM-OI NEXT · Office Improvement Digital Showcase</p>
 </header>
 
-<!-- MENU -->
 <div class="menu">
-  <button class="n active" onclick="go(0)">Makigami</button>
-  <button class="e" onclick="go(1)">FI Theme</button>
-  <button class="x" onclick="go(2)">Kaizen</button>
-  <button class="x" onclick="go(3)">OPL</button>
-  <button class="t" onclick="go(4)">AM-OI</button>
+  <button class="btn-makigami active" onclick="go(0)">Makigami</button>
+  <button class="btn-fi" onclick="go(1)">FI Theme</button>
+  <button class="btn-kaizen" onclick="go(2)">Kaizen</button>
+  <button class="btn-opl" onclick="go(3)">OPL</button>
+  <button class="btn-am" onclick="go(4)">AM-OI</button>
 </div>
 
-<!-- CONTENT -->
 <div class="content">
   <div class="card">
-    <img id="contentImage" src="image/makigami.png" alt="content">
+    <img id="contentImage" src="image/makigami_v2.png" alt="TPM-OI Content">
   </div>
 </div>
 
-<!-- NAVIGATION -->
 <div class="nav">
   <button onclick="prev()">◀ Back</button>
   <button onclick="next()">Next ▶</button>
@@ -157,7 +176,7 @@ const pages = [
   "image/makigami_v2.png",
   "image/fi-theme_v2.png",
   "image/kaizen_v2.png",
-  "image/opl_V2.png",
+  "image/opl_v2.png",
   "image/am-oi_v2.png"
 ];
 
@@ -188,6 +207,3 @@ function prev(){
 
 </body>
 </html>
-
-
-
