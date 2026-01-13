@@ -9,7 +9,7 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #0b1c2d; /* Dark tech blue */
+    background: #0b1c2d;
     color: #ffffff;
 }
 
@@ -21,19 +21,36 @@ body {
 
 .header h1 {
     margin: 0;
-    font-size: 28px;
     color: #00e5ff;
 }
 
-.header p {
-    margin: 4px 0 0;
+.menu {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 12px;
+    background: #091726;
+    flex-wrap: wrap;
+}
+
+.menu button {
+    background: #00e5ff;
+    border: none;
+    color: #000;
+    padding: 10px 16px;
     font-size: 14px;
-    opacity: 0.85;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.menu button:hover {
+    background: #00bcd4;
 }
 
 iframe {
     width: 100%;
-    height: calc(100vh - 90px); /* เต็มจอ */
+    height: calc(100vh - 170px);
     border: none;
 }
 </style>
@@ -46,11 +63,36 @@ iframe {
     <p>Office Improvement Digital Showcase</p>
 </div>
 
-<iframe 
-    title="PowerBI_Production_Expense_2026"
-    src="https://app.powerbi.com/view?r=eyJrIjoiZTM4YzdjNjMtMGIzMS00OGY4LTgwODAtMzA2ZDJmNjUyMDViIiwidCI6ImVkNDViN2Q4LWRlMTYtNDA0NS04Mzc4LTlmMDVkYjM1NzNmYyIsImMiOjEwfQ%3D%3D"
-    allowfullscreen="true">
-</iframe>
+<div class="menu">
+    <button onclick="loadPage('dashboard')">OI Dashboard</button>
+    <button onclick="loadPage('opl')">OPL Knowledge</button>
+    <button onclick="loadPage('fi')">FI Theme</button>
+    <button onclick="loadPage('makigami')">Makigami</button>
+</div>
+
+<iframe id="contentFrame"></iframe>
+
+<script>
+function loadPage(page) {
+    const frame = document.getElementById("contentFrame");
+
+    if (page === 'dashboard') {
+        frame.src = "PUT_POWER_BI_PUBLISH_TO_WEB_LINK";
+    }
+    if (page === 'opl') {
+        frame.src = "PUT_OPL_PAGE_URL";
+    }
+    if (page === 'fi') {
+        frame.src = "https://drive.google.com/file/d/1Jc1detErJz_ISF1_UVyVrnOuBJnfb1Ny/view?usp=drive_link";
+    }
+    if (page === 'makigami') {
+        frame.src = "PUT_MAKIGAMI_PAGE_URL";
+    }
+}
+
+// เปิด Dashboard เป็นค่าเริ่มต้น
+loadPage('dashboard');
+</script>
 
 </body>
 </html>
