@@ -1,154 +1,135 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>TPM-OI NEXT | Digital Showcase</title>
+<meta charset="UTF-8" />
+<title>TPM-OI NEXT</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body {
-    font-family: "Segoe UI", Arial, sans-serif;
-    background: #ffffff;
-    color: #0f172a;
-    margin: 0;
-    text-align: center;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #ffffff;
+  text-align: center;
 }
 
-/* HEADER */
-.header {
-    padding: 20px 10px;
+h1 {
+  margin-top: 30px;
+  letter-spacing: 3px;
 }
 
-.header h1 {
-    margin: 0;
-    font-size: 32px;
-    letter-spacing: 2px;
+.subtitle {
+  color: #666;
+  margin-bottom: 30px;
 }
 
-.header p {
-    margin: 6px 0 0;
-    color: #475569;
-}
-
-/* BUTTONS */
 .menu {
-    margin: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 
 .menu button {
-    margin: 6px;
-    padding: 12px 20px;
-    font-size: 16px;
-    border-radius: 999px;
-    border: 2px solid #2563eb;
-    background: white;
-    color: #2563eb;
-    cursor: pointer;
+  padding: 10px 22px;
+  border-radius: 30px;
+  border: 2px solid #2563eb;
+  background: #fff;
+  color: #2563eb;
+  font-size: 16px;
+  cursor: pointer;
 }
 
-.menu button.active,
-.menu button:hover {
-    background: #2563eb;
-    color: white;
+.menu button.active {
+  background: #2563eb;
+  color: #fff;
 }
 
-/* CONTENT */
 .viewer {
-    max-width: 95%;
-    margin: 20px auto;
+  max-width: 90%;
+  margin: 20px auto;
 }
 
 .viewer img {
-    width: 100%;
-    max-height: 70vh;
-    object-fit: contain;
-    border-radius: 12px;
-    border: 1px solid #e5e7eb;
+  width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 12px;
 }
 
-/* NAVIGATION */
 .nav {
-    display: flex;
-    justify-content: space-between;
-    max-width: 400px;
-    margin: 20px auto 40px;
+  display: flex;
+  justify-content: space-between;
+  max-width: 500px;
+  margin: 30px auto;
 }
 
 .nav button {
-    padding: 10px 24px;
-    font-size: 16px;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    background: #0f172a;
-    color: white;
-}
-
-.nav button:hover {
-    background: #2563eb;
+  background: #0f172a;
+  color: #fff;
+  border: none;
+  padding: 14px 28px;
+  font-size: 18px;
+  border-radius: 12px;
+  cursor: pointer;
 }
 </style>
 </head>
 
 <body>
 
-<div class="header">
-    <h1>TPM-OI NEXT</h1>
-    <p>Office Improvement Digital Showcase</p>
-</div>
+<h1>TPM-OI NEXT</h1>
+<div class="subtitle">Office Improvement Digital Showcase</div>
 
-<div class="menu" id="menu">
-    <button onclick="selectPage(0)">Makigami</button>
-    <button onclick="selectPage(1)">FI Theme</button>
-    <button onclick="selectPage(2)">Kaizen</button>
-    <button onclick="selectPage(3)">OPL</button>
-    <button onclick="selectPage(4)">AM-OI</button>
+<div class="menu">
+  <button onclick="showPage(0)">Makigami</button>
+  <button onclick="showPage(1)">FI Theme</button>
+  <button onclick="showPage(2)">Kaizen</button>
+  <button onclick="showPage(3)">OPL</button>
+  <button onclick="showPage(4)">AM-OI</button>
 </div>
 
 <div class="viewer">
-    <img id="content" src="images/makigami.png">
+  <img id="contentImage" src="">
 </div>
 
 <div class="nav">
-    <button onclick="prev()">◀ Back</button>
-    <button onclick="next()">Next ▶</button>
+  <button onclick="prev()">◀ Back</button>
+  <button onclick="next()">Next ▶</button>
 </div>
 
 <script>
 const pages = [
-    { name: "Makigami", img: "images/makigami.png" },
-    { name: "FI Theme", img: "images/fi-theme.png" },
-    { name: "Kaizen", img: "images/kaizen.png" },
-    { name: "OPL", img: "images/opl.png" },
-    { name: "AM-OI", img: "images/am-oi.png" }
+  "image/makigami_v2.png",
+  "image/fi-theme_v2.png",
+  "image/kaizen_v2.png",
+  "image/opl_v2.png",
+  "image/am-oi_v2.png"   // 🔥 ชื่อจริงตาม repo
 ];
 
 let current = 0;
-const img = document.getElementById("content");
-const buttons = document.querySelectorAll(".menu button");
 
-function update() {
-    img.src = pages[current].img;
-    buttons.forEach((b, i) =>
-        b.classList.toggle("active", i === current)
-    );
-}
+function showPage(index) {
+  current = index;
+  document.getElementById("contentImage").src = pages[current];
 
-function selectPage(i) {
-    current = i;
-    update();
+  document.querySelectorAll(".menu button").forEach((btn, i) => {
+    btn.classList.toggle("active", i === current);
+  });
 }
 
 function next() {
-    current = (current + 1) % pages.length;
-    update();
+  current = (current + 1) % pages.length;
+  showPage(current);
 }
 
 function prev() {
-    current = (current - 1 + pages.length) % pages.length;
-    update();
+  current = (current - 1 + pages.length) % pages.length;
+  showPage(current);
 }
 
-update();
+showPage(0);
 </script>
 
 </body>
