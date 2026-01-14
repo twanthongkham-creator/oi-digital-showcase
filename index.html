@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>TPM-OI NEXT | Digital Showcase</title>
 
+<!-- Prompt Font -->
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -17,97 +18,78 @@ body {
   margin: 0;
   background: #ffffff;
   color: #0f172a;
+  overflow: hidden; /* KIOSK MODE */
 }
 
 /* ================= HEADER ================= */
 header {
   text-align: center;
-  padding: 20px 16px 6px; /* 🔽 ลดระยะ */
+  padding: 20px 12px 8px;
 }
 
 .next-logo {
-  font-size: 42px;
+  font-size: 44px;
   font-weight: 700;
-  letter-spacing: 8px;
-  margin: 0;
+  letter-spacing: 6px;
 }
 
-.next-logo .n {
-  background: linear-gradient(135deg,#22c55e,#4ade80);
-  -webkit-background-clip: text;
-  color: transparent;
-}
-.next-logo .e {
-  background: linear-gradient(135deg,#38bdf8,#2563eb);
-  -webkit-background-clip: text;
-  color: transparent;
-}
-.next-logo .x {
-  background: linear-gradient(135deg,#f59e0b,#fb923c);
-  -webkit-background-clip: text;
-  color: transparent;
-}
-.next-logo .t {
-  background: linear-gradient(135deg,#a855f7,#7c3aed);
-  -webkit-background-clip: text;
-  color: transparent;
-}
+/* NEXT Colors */
+.n { background:linear-gradient(135deg,#22c55e,#4ade80); -webkit-background-clip:text; color:transparent;}
+.e { background:linear-gradient(135deg,#38bdf8,#2563eb); -webkit-background-clip:text; color:transparent;}
+.x { background:linear-gradient(135deg,#f59e0b,#fb923c); -webkit-background-clip:text; color:transparent;}
+.t { background:linear-gradient(135deg,#a855f7,#7c3aed); -webkit-background-clip:text; color:transparent;}
 
-header p {
-  margin: 6px 0 0;
-  color: #64748b;
-  font-size: 15px;
-}
-
-/* ================= MENU ================= */
-.menu {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  padding: 10px 12px; /* 🔽 ลด */
-}
-
-.menu button {
-  padding: 10px 22px;
-  border-radius: 999px;
-  border: 2px solid;
-  background: #ffffff;
+.subtitle {
   font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
+  color: #64748b;
+  margin-top: 6px;
 }
 
-/* ทุกปุ่มใช้สีน้ำเงินเดียว */
-.btn-makigami,
-.btn-fi,
-.btn-kaizen,
-.btn-opl,
-.btn-am {
-  border-color:#1E3A8A;
-  color:#1E3A8A;
+/* ================= NEXT CIRCLE ================= */
+.framework {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 10px 0;
 }
-.menu button.active {
-  background:#1E3A8A;
-  color:white;
+
+.circle {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.3;
+  transition: 0.3s;
 }
+
+.circle.active {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+.circle.n { background:#22c55e; color:#fff;}
+.circle.e { background:#2563eb; color:#fff;}
+.circle.x { background:#f59e0b; color:#fff;}
+.circle.t { background:#7c3aed; color:#fff;}
 
 /* ================= CONTENT ================= */
 .content {
-  padding: 6px 14px 88px; /* 🔽 ยกภาพขึ้น */
   display: flex;
   justify-content: center;
+  padding: 6px 12px 90px;
 }
 
 .card {
   width: 100%;
-  max-width: 540px;
-  background: #ffffff;
+  max-width: 520px;
+  background: white;
   border-radius: 20px;
-  padding: 14px;
-  box-shadow: 0 12px 28px rgba(0,0,0,0.1);
-  text-align: center;
+  padding: 12px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.1);
 }
 
 .card img {
@@ -121,20 +103,20 @@ header p {
   bottom: 0;
   left: 0;
   right: 0;
-  background: #ffffff;
-  border-top: 1px solid #e5e7eb;
-  padding: 10px 14px;
+  padding: 10px 16px;
   display: flex;
   justify-content: space-between;
+  background: #ffffff;
+  border-top: 1px solid #e5e7eb;
 }
 
 .nav button {
-  padding: 10px 26px;
-  border-radius: 14px;
+  padding: 12px 26px;
+  border-radius: 16px;
   border: none;
   background: #0f172a;
   color: white;
-  font-size: 14px;
+  font-size: 15px;
   cursor: pointer;
 }
 </style>
@@ -143,29 +125,31 @@ header p {
 <body>
 
 <header>
-  <h1 class="next-logo">
+  <div class="next-logo">
     <span class="n">N</span>
     <span class="e">E</span>
     <span class="x">X</span>
     <span class="t">T</span>
-  </h1>
-  <p>TPM-OI NEXT · Office Improvement Digital Showcase</p>
+  </div>
+  <div class="subtitle">TPM-OI NEXT · Office Improvement Digital Showcase</div>
 </header>
 
-<div class="menu">
-  <button class="btn-makigami active" onclick="go(0)">Makigami</button>
-  <button class="btn-fi" onclick="go(1)">FI Theme</button>
-  <button class="btn-kaizen" onclick="go(2)">Kaizen</button>
-  <button class="btn-opl" onclick="go(3)">OPL</button>
-  <button class="btn-am" onclick="go(4)">AM-OI</button>
+<!-- NEXT FRAMEWORK -->
+<div class="framework">
+  <div class="circle n" onclick="jump(1)">N</div>
+  <div class="circle e" onclick="jump(2)">E</div>
+  <div class="circle x" onclick="jump(3)">X</div>
+  <div class="circle t" onclick="jump(4)">T</div>
 </div>
 
+<!-- CONTENT -->
 <div class="content">
   <div class="card">
-    <img id="contentImage" src="image/makigami_v2.png" alt="TPM-OI Content">
+    <img id="contentImage" src="image/next-framework.png">
   </div>
 </div>
 
+<!-- NAV -->
 <div class="nav">
   <button onclick="prev()">◀ Back</button>
   <button onclick="next()">Next ▶</button>
@@ -173,6 +157,7 @@ header p {
 
 <script>
 const pages = [
+  "image/next-framework.png",
   "image/makigami_v2.png",
   "image/fi-theme_v2.png",
   "image/kaizen_v2.png",
@@ -181,28 +166,40 @@ const pages = [
 ];
 
 let index = 0;
+let autoSlide = true;
 
+/* UPDATE UI */
 function update() {
   document.getElementById("contentImage").src = pages[index];
-  document.querySelectorAll(".menu button").forEach((b,i)=>{
-    b.classList.toggle("active", i===index);
+
+  document.querySelectorAll(".circle").forEach((c,i)=>{
+    c.classList.toggle("active", i+1 === index);
   });
 }
 
-function go(i){
-  index = i;
-  update();
-}
-
-function next(){
+/* NAVIGATION */
+function next() {
   index = (index + 1) % pages.length;
   update();
 }
 
-function prev(){
+function prev() {
   index = (index - 1 + pages.length) % pages.length;
   update();
 }
+
+/* JUMP FROM CIRCLE */
+function jump(i) {
+  index = i;
+  update();
+}
+
+/* AUTO SLIDE (นิทรรศการ) */
+setInterval(() => {
+  if(autoSlide) next();
+}, 8000); // 8 วินาที/หน้า
+
+update();
 </script>
 
 </body>
