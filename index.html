@@ -18,83 +18,103 @@ body {
   margin: 0;
   background: #ffffff;
   color: #0f172a;
-  overflow: hidden; /* KIOSK MODE */
+  overflow: hidden; /* Kiosk mode */
 }
 
 /* ================= HEADER ================= */
 header {
   text-align: center;
-  padding: 20px 12px 8px;
+  padding: 18px 16px 6px;
 }
 
 .next-logo {
-  font-size: 44px;
+  font-size: 42px;
   font-weight: 700;
-  letter-spacing: 6px;
+  letter-spacing: 8px;
+  margin: 0;
 }
 
-/* NEXT Colors */
-.n { background:linear-gradient(135deg,#22c55e,#4ade80); -webkit-background-clip:text; color:transparent;}
-.e { background:linear-gradient(135deg,#38bdf8,#2563eb); -webkit-background-clip:text; color:transparent;}
-.x { background:linear-gradient(135deg,#f59e0b,#fb923c); -webkit-background-clip:text; color:transparent;}
-.t { background:linear-gradient(135deg,#a855f7,#7c3aed); -webkit-background-clip:text; color:transparent;}
+.next-logo .n {
+  background: linear-gradient(135deg,#22c55e,#4ade80);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.next-logo .e {
+  background: linear-gradient(135deg,#38bdf8,#2563eb);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.next-logo .x {
+  background: linear-gradient(135deg,#f59e0b,#fb923c);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.next-logo .t {
+  background: linear-gradient(135deg,#a855f7,#7c3aed);
+  -webkit-background-clip: text;
+  color: transparent;
+}
 
-.subtitle {
+header p {
+  margin: 6px 0 0;
   font-size: 14px;
   color: #64748b;
-  margin-top: 6px;
 }
-
-/* ================= NEXT CIRCLE ================= */
-.framework {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  padding: 10px 0;
-}
-
-.circle {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  opacity: 0.3;
-  transition: 0.3s;
-}
-
-.circle.active {
-  opacity: 1;
-  transform: scale(1.15);
-}
-
-.circle.n { background:#22c55e; color:#fff;}
-.circle.e { background:#2563eb; color:#fff;}
-.circle.x { background:#f59e0b; color:#fff;}
-.circle.t { background:#7c3aed; color:#fff;}
 
 /* ================= CONTENT ================= */
 .content {
   display: flex;
   justify-content: center;
-  padding: 6px 12px 90px;
+  padding: 10px 16px 90px;
 }
 
 .card {
   width: 100%;
-  max-width: 520px;
-  background: white;
-  border-radius: 20px;
-  padding: 12px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+  max-width: 620px;
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 16px;
+  box-shadow: 0 14px 32px rgba(0,0,0,0.08);
+  text-align: center;
 }
 
 .card img {
   width: 100%;
-  border-radius: 14px;
+  border-radius: 16px;
+}
+
+/* Key Message */
+.key-message {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #334155;
+  font-weight: 500;
+}
+
+/* ================= TOPIC BUTTONS ================= */
+.topics {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 8px 16px;
+  flex-wrap: wrap;
+}
+
+.topics button {
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: 2px solid #1E3A8A;
+  background: #ffffff;
+  color: #1E3A8A;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.topics button.active {
+  background: #1E3A8A;
+  color: #ffffff;
 }
 
 /* ================= NAV ================= */
@@ -103,11 +123,11 @@ header {
   bottom: 0;
   left: 0;
   right: 0;
+  background: #ffffff;
+  border-top: 1px solid #e5e7eb;
   padding: 10px 16px;
   display: flex;
   justify-content: space-between;
-  background: #ffffff;
-  border-top: 1px solid #e5e7eb;
 }
 
 .nav button {
@@ -116,7 +136,7 @@ header {
   border: none;
   background: #0f172a;
   color: white;
-  font-size: 15px;
+  font-size: 14px;
   cursor: pointer;
 }
 </style>
@@ -125,27 +145,33 @@ header {
 <body>
 
 <header>
-  <div class="next-logo">
+  <h1 class="next-logo">
     <span class="n">N</span>
     <span class="e">E</span>
     <span class="x">X</span>
     <span class="t">T</span>
-  </div>
-  <div class="subtitle">TPM-OI NEXT · Office Improvement Digital Showcase</div>
+  </h1>
+  <p>TPM-OI NEXT · Office Improvement Digital Showcase</p>
 </header>
 
-<!-- NEXT FRAMEWORK -->
-<div class="framework">
-  <div class="circle n" onclick="jump(1)">N</div>
-  <div class="circle e" onclick="jump(2)">E</div>
-  <div class="circle x" onclick="jump(3)">X</div>
-  <div class="circle t" onclick="jump(4)">T</div>
+<!-- TOPIC SELECT -->
+<div class="topics">
+  <button onclick="go(0)" class="active">NEXT Framework</button>
+  <button onclick="go(1)">Makigami</button>
+  <button onclick="go(2)">FI Theme</button>
+  <button onclick="go(3)">Kaizen</button>
+  <button onclick="go(4)">OPL</button>
+  <button onclick="go(5)">AM-OI</button>
 </div>
 
 <!-- CONTENT -->
 <div class="content">
   <div class="card">
-    <img id="contentImage" src="image/next-framework.png">
+    <img id="contentImage" src="image/next-framework.png" alt="TPM-OI Content">
+    <div id="keyMessage" class="key-message">
+      NEXT คือกรอบแนวคิดในการขับเคลื่อน Office Improvement  
+      จากแนวคิด → การลงมือทำ → ผลลัพธ์ → ความยั่งยืน
+    </div>
   </div>
 </div>
 
@@ -157,49 +183,53 @@ header {
 
 <script>
 const pages = [
-  "image/next-framework.png",
-  "image/makigami_v2.png",
-  "image/fi-theme_v2.png",
-  "image/kaizen_v2.png",
-  "image/opl_v2.png",
-  "image/am-oi_v2.png"
+  {
+    img: "image/next-framework.png",
+    msg: "NEXT คือกรอบแนวคิดในการขับเคลื่อน Office Improvement จากแนวคิด → การลงมือทำ → ผลลัพธ์ → ความยั่งยืน"
+  },
+  { img: "image/makigami_v2.png", msg: "" },
+  { img: "image/fi-theme_v2.png", msg: "" },
+  { img: "image/kaizen_v2.png", msg: "" },
+  { img: "image/opl_v2.png", msg: "" },
+  { img: "image/am-oi_v2.png", msg: "" }
 ];
 
 let index = 0;
 let autoSlide = true;
 
-/* UPDATE UI */
 function update() {
-  document.getElementById("contentImage").src = pages[index];
-
-  document.querySelectorAll(".circle").forEach((c,i)=>{
-    c.classList.toggle("active", i+1 === index);
+  document.getElementById("contentImage").src = pages[index].img;
+  document.getElementById("keyMessage").innerText = pages[index].msg || "";
+  document.querySelectorAll(".topics button").forEach((b,i)=>{
+    b.classList.toggle("active", i === index);
   });
 }
 
-/* NAVIGATION */
-function next() {
-  index = (index + 1) % pages.length;
-  update();
-}
-
-function prev() {
-  index = (index - 1 + pages.length) % pages.length;
-  update();
-}
-
-/* JUMP FROM CIRCLE */
-function jump(i) {
+function go(i){
   index = i;
+  autoSlide = false;
   update();
 }
 
-/* AUTO SLIDE (นิทรรศการ) */
-setInterval(() => {
-  if(autoSlide) next();
-}, 8000); // 8 วินาที/หน้า
+function next(){
+  index = (index + 1) % pages.length;
+  autoSlide = false;
+  update();
+}
 
-update();
+function prev(){
+  index = (index - 1 + pages.length) % pages.length;
+  autoSlide = false;
+  update();
+}
+
+/* Auto Slide Exhibition Mode */
+setInterval(()=>{
+  if(autoSlide){
+    index = (index + 1) % pages.length;
+    update();
+  }
+}, 8000);
 </script>
 
 </body>
