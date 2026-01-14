@@ -17,17 +17,17 @@ body {
   margin: 0;
   background: #ffffff;
   color: #0f172a;
-  overflow: hidden; /* mobile kiosk */
+  overflow-y: auto; /* ✅ ให้ scroll */
 }
 
 /* ===== HEADER ===== */
 header {
   text-align: center;
-  padding: 14px 12px 4px;
+  padding: 14px 12px 6px;
 }
 
 .next-logo {
-  font-size: 36px;
+  font-size: 34px;
   font-weight: 700;
   letter-spacing: 6px;
 }
@@ -47,44 +47,52 @@ header {
 .content {
   display: flex;
   justify-content: center;
-  padding: 6px 10px 120px;
+  padding: 8px 10px 24px;
 }
 
 .card {
   width: 100%;
-  max-width: 420px; /* เหมาะกับมือถือ */
+  max-width: 460px;
   background: #fff;
-  border-radius: 18px;
+  border-radius: 16px;
   padding: 10px;
-  box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* placeholder กันจอขาว */
+.image-wrapper {
+  width: 100%;
+  min-height: 220px;
+  background: #f1f5f9;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .card img {
   width: 100%;
-  border-radius: 14px;
+  display: block;
+  border-radius: 12px;
 }
 
+/* Key message */
 .key-message {
-  margin-top: 6px;
+  margin-top: 8px;
   font-size: 13px;
   color: #334155;
   text-align: center;
+  line-height: 1.4;
 }
 
-/* ===== TOPIC BUTTONS (Thumb friendly) ===== */
+/* ===== TOPIC BUTTONS ===== */
 .topics {
-  position: fixed;
-  bottom: 64px;
-  left: 0;
-  right: 0;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 8px;
-  padding: 8px 10px;
+  padding: 10px;
 }
 
 .topics button {
-  padding: 12px 8px;
+  padding: 12px 6px;
   border-radius: 14px;
   border: 2px solid #1E3A8A;
   background: #fff;
@@ -100,10 +108,8 @@ header {
 
 /* ===== NAV ===== */
 .nav {
-  position: fixed;
+  position: sticky; /* ✅ ไม่บังเนื้อหา */
   bottom: 0;
-  left: 0;
-  right: 0;
   display: flex;
   justify-content: space-between;
   padding: 10px;
@@ -133,17 +139,6 @@ header {
   <div class="subtitle">TPM-OI NEXT · Mobile Digital Showcase</div>
 </header>
 
-<!-- CONTENT -->
-<div class="content">
-  <div class="card">
-    <img id="contentImage" src="image/next-framework.png">
-    <div id="keyMessage" class="key-message">
-      NEXT คือกรอบแนวคิดในการขับเคลื่อน Office Improvement  
-      จากแนวคิด → การลงมือทำ → ผลลัพธ์ → ความยั่งยืน
-    </div>
-  </div>
-</div>
-
 <!-- TOPIC SELECT -->
 <div class="topics">
   <button onclick="go(0)" class="active">NEXT</button>
@@ -154,6 +149,23 @@ header {
   <button onclick="go(5)">AM-OI</button>
 </div>
 
+<!-- CONTENT -->
+<div class="content">
+  <div class="card">
+    <div class="image-wrapper">
+      <img id="contentImage"
+           src="image/next-framework.png"
+           loading="lazy"
+           alt="TPM-OI Content">
+    </div>
+
+    <div id="keyMessage" class="key-message">
+      NEXT คือกรอบแนวคิดในการขับเคลื่อน Office Improvement  
+      จากแนวคิด → การลงมือทำ → ผลลัพธ์ → ความยั่งยืน
+    </div>
+  </div>
+</div>
+
 <!-- NAV -->
 <div class="nav">
   <button onclick="prev()">◀ Back</button>
@@ -162,7 +174,10 @@ header {
 
 <script>
 const pages = [
-  { img:"image/next-framework.png", msg:"NEXT คือกรอบแนวคิดในการขับเคลื่อน Office Improvement จากแนวคิด → การลงมือทำ → ผลลัพธ์ → ความยั่งยืน" },
+  {
+    img:"image/next-framework.png",
+    msg:"NEXT คือกรอบแนวคิดในการขับเคลื่อน Office Improvement จากแนวคิด → การลงมือทำ → ผลลัพธ์ → ความยั่งยืน"
+  },
   { img:"image/makigami_v2.png", msg:"" },
   { img:"image/fi-theme_v2.png", msg:"" },
   { img:"image/kaizen_v2.png", msg:"" },
@@ -174,8 +189,10 @@ let index = 0;
 let autoSlide = true;
 
 function update(){
-  document.getElementById("contentImage").src = pages[index].img;
+  const img = document.getElementById("contentImage");
+  img.src = pages[index].img;
   document.getElementById("keyMessage").innerText = pages[index].msg || "";
+
   document.querySelectorAll(".topics button").forEach((b,i)=>{
     b.classList.toggle("active", i===index);
   });
@@ -199,13 +216,13 @@ function prev(){
   update();
 }
 
-/* Auto exhibition mode */
+/* Auto slide (ยังคงได้) */
 setInterval(()=>{
   if(autoSlide){
     index = (index + 1) % pages.length;
     update();
   }
-}, 7000);
+}, 9000);
 
 update();
 </script>
